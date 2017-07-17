@@ -22,7 +22,14 @@
             break;
         default:
             if (file_exists($myclass.".php") === true)
+            {
                 require_once ($myclass.".php");
+            }
+            else
+            {
+                require_once ("util".DIRECTORY_SEPARATOR.$myclass.".php");
+            }
+
     }
 
 });
