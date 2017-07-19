@@ -26,7 +26,7 @@ echo json_encode($listausuarios);
 
 // Login
 $user = new Usuario();
-$user->login('bdantas5','ssdgdsgsds');
+$user->login('bdantas5','ssdgdsg');
 echo $user;
 
 ?>

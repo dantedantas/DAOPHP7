@@ -88,8 +88,7 @@ class Usuario
 
         if (count($result) > 0)
         {
-            $row = $result[0];
-            $this->setData($row);
+            $this->setData($result[0]);
         }
 
     }
@@ -123,8 +122,7 @@ class Usuario
 
         if (count($result) > 0)
         {
-            $row = $result[0];
-            $this->setData($row);
+            $this->setData($result[0]);
         }
         else
         {
