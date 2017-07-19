@@ -78,12 +78,54 @@ class Usuario
         $this->dtcadastro = $dtcadastro;
     }
 
+    public function __construct($login = null, $senha = null)
+    {
+        $this->setDeslogin($login);
+        $this->setDessenha($senha);
+    }
+
     public function getById($id = null)
     {
         $DBClass = new Dbconnect();
 
         $result = $DBClass->select("select * from tb_usuarios where idusuario = :ID", array(
             ":ID" => $id
+        ));
+
+        if (count($result) > 0)
+        {
+            $this->setData($result[0]);
+        }
+
+    }
+
+    public function update($login, $senha)
+    {
+        $DBClass = new Dbconnect();
+
+        $this->setDessenha($senha);
+        $this->setDeslogin($login);
+
+        $result = $DBClass->select("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASS WHERE idusuario = :ID", array(
+            ":LOGIN" => $this->getDeslogin(),
+            ":PASS" => $this->getDessenha(),
+            ":ID" => $this->getIdUsuario()
+        ));
+
+        if (count($result) > 0)
+        {
+            $this->setData($result[0]);
+        }
+
+    }
+
+    public function insert()
+    {
+        $DBClass = new Dbconnect();
+
+        $result = $DBClass->select("CALL sp_usuario_insert(:USER, :PASS)", array(
+            ":USER" => $this->getDeslogin(),
+            ":PASS" => $this->getDessenha()
         ));
 
         if (count($result) > 0)

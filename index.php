@@ -25,8 +25,24 @@ echo json_encode($listausuarios);
 //echo json_encode(Usuario::search('bd'));
 
 // Login
+/*
 $user = new Usuario();
 $user->login('bdantas5','ssdgdsg');
 echo $user;
+*/
 
+// Insert obj user
+/*
+$newuser = new Usuario("lobo", "mau");
+//$newuser->setDeslogin("aluno");
+//$newuser->setDessenha("@lun@");
+$newuser->insert();
+echo $newuser;
+*/
+
+// Update the user 5
+$user = new Usuario();
+$user->getById(5);
+//$user->update("zionflash","!§$%&");
+echo $user;
 ?>
