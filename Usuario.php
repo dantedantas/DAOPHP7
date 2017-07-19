@@ -119,6 +119,20 @@ class Usuario
 
     }
 
+    public function delete()
+    {
+        $DBClass = new Dbconnect();
+
+        $result = $DBClass->select("DELETE FROM tb_usuarios  WHERE idusuario = :ID", array(
+            ":ID" => $this->getIdUsuario()
+        ));
+
+        $this->setIdusuario(0);
+        $this->setDeslogin("");
+        $this->setDessenha("");
+        $this->setDtcadastro(new DateTime());
+    }
+
     public function insert()
     {
         $DBClass = new Dbconnect();
@@ -175,8 +189,6 @@ class Usuario
 
     public function setData($row = array())
     {
-
-
         $this->setIdusuario($row['idusuario']);
         $this->setDeslogin($row['deslogin']);
         $this->setDessenha($row['dessenha']);

@@ -41,8 +41,17 @@ echo $newuser;
 */
 
 // Update the user 5
+/*
 $user = new Usuario();
 $user->getById(5);
-//$user->update("zionflash","!§$%&");
+$user->update("zionflash","!§$%&");
+echo $user;
+*/
+
+// Delete the user 10
+
+$user = new Usuario();
+$user->getById(10);
+$user->delete();
 echo $user;
 ?>
