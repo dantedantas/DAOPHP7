@@ -78,7 +78,7 @@ class Usuario
         $this->dtcadastro = $dtcadastro;
     }
 
-    public function loadById($id = null)
+    public function getById($id = null)
     {
         $DBClass = new Dbconnect();
 
@@ -89,13 +89,58 @@ class Usuario
         if (count($result) > 0)
         {
             $row = $result[0];
-
-            $this->setIdusuario($row['idusuario']);
-            $this->setDeslogin($row['deslogin']);
-            $this->setDessenha($row['dessenha']);
-            $this->setDtcadastro(new DateTime($row['dtcadastro']));
+            $this->setData($row);
         }
 
+    }
+
+    public static function getAll()
+    {
+        $DBClass = new Dbconnect();
+
+        return $DBClass->select("select * from tb_usuarios order by deslogin");
+
+    }
+
+    public static function search($search)
+    {
+        $DBClass = new Dbconnect();
+
+        return $DBClass->select("select * from tb_usuarios  where deslogin like :SEARCH order by deslogin", array(
+            ":SEARCH" => "%".$search."%"
+        ));
+
+    }
+
+    public function login($login, $senha)
+    {
+        $DBClass = new Dbconnect();
+
+        $result = $DBClass->select("select * from tb_usuarios where deslogin = :LOGIN and dessenha = :SENHA", array(
+            ":LOGIN" => $login,
+            ":SENHA" => $senha
+        ));
+
+        if (count($result) > 0)
+        {
+            $row = $result[0];
+            $this->setData($row);
+        }
+        else
+        {
+            throw new Exception("LOGIN FAIL!!!!",1);
+        }
+
+    }
+
+    public function setData($row = array())
+    {
+
+
+        $this->setIdusuario($row['idusuario']);
+        $this->setDeslogin($row['deslogin']);
+        $this->setDessenha($row['dessenha']);
+        $this->setDtcadastro(new DateTime($row['dtcadastro']));
     }
 
     public function __toString()
