@@ -13,6 +13,40 @@ class Usuario
     private $deslogin;
     private $dessenha;
     private $dtcadastro;
+    private $power;
+    private $guns = array();
+
+    /**
+     * @return mixed
+     */
+    public function getGuns()
+    {
+        return $this->guns;
+    }
+
+    /**
+     * @param mixed $guns
+     */
+    public function addGun(Gun $gun)
+    {
+        $this->guns[] = $gun;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPower()
+    {
+        return $this->power;
+    }
+
+    /**
+     * @param mixed $power
+     */
+    public function setPower($power)
+    {
+        $this->power = $power;
+    }
 
     /**
      * @return mixed
@@ -67,6 +101,7 @@ class Usuario
      */
     public function getDtcadastro()
     {
+        if (empty($this->dtcadastro)) $this->setDtCadastro(new DateTime());
         return $this->dtcadastro;
     }
 
@@ -78,10 +113,11 @@ class Usuario
         $this->dtcadastro = $dtcadastro;
     }
 
-    public function __construct($login = null, $senha = null)
+    public function __construct($login = "", $senha = "", $power)
     {
         $this->setDeslogin($login);
         $this->setDessenha($senha);
+        $this->setPower($power);
     }
 
     public function getById($id = null)
@@ -201,6 +237,7 @@ class Usuario
             "idusuario"=>$this->getIdusuario(),
             "deslogin"=>$this->getDeslogin(),
             "dessenha"=>$this->getDessenha(),
+            "power"=>$this->getPower(),
             "dtcadastro"=>$this->getDtcadastro()->format("d/m/Y H:i:s")
         ));
     }

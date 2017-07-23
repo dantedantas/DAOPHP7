@@ -8,6 +8,9 @@
 
 //require_once ("autoload".DIRECTORY_SEPARATOR."util".DIRECTORY_SEPARATOR."myautoload.php");
 
+// Report all errors except E_NOTICE
+error_reporting(E_ALL & ~E_NOTICE);
+
 require_once ("myautoload.php");
 
 header('Content-Type: text/html; charset=utf-8 http-equiv=Content-Language content=pt-br');
