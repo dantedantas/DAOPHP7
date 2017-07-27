@@ -8,7 +8,8 @@
 
 if (isset($_COOKIE["DFDTecnobyteBASKET"]))
 {
+    $mycookie = json_decode($_COOKIE["DFDTecnobyteBASKET"]);
     echo "<pre>";
-    var_dump(json_decode($_COOKIE["DFDTecnobyteBASKET"], true));
+    print_r($mycookie->itens);
     echo "</pre>";
 }
