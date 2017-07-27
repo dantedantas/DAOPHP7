@@ -6,6 +6,7 @@
     <style>
         p {
             font-family: Verdana, Helvetica, sans-serif;
+            font-size: xx-large;
         }
     </style>
 </head>
