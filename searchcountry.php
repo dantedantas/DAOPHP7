@@ -38,7 +38,8 @@ else
     echo "</pre>";
 }
 
-/*
+
+/**
 if ($param1 == "all")
    $data = APISearchCountry::search($param2, new SearchCountryAll());//json_decode(APISearchCountry::search($param2, new SearchCountryAll()), true);
 elseif ($param1 == "2")
