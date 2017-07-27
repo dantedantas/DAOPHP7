@@ -9,18 +9,10 @@
 class APISearchCountry
 {
 
-    public static function search(String $mystring)
+    public static function search(String $mystring, ISearchCountry $SC)
     {
-        $link = "http://services.groupkt.com/country/search?text=$mystring";
 
-        $ch = curl_init($link);
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-
-        $response = curl_exec($ch);
-
-        curl_close($ch);
+        $response = $SC::search($mystring);
 
         return $response;
     }
